@@ -4,19 +4,32 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows.meta,arrows}
-
+\usepackage{tcolorbox}
+\usepackage{xcolor}
 \usepackage[backend=biber]{biblatex}
-
-
 \usepackage{colortbl}
-
 \usepackage[default,oldstyle,scale=0.95]{opensans} %% Alternatively
 %% use the option 'defaultsans' instead of 'default' to replace the
 %% sans serif font only.
 \usepackage[T1]{fontenc}
-
+\usepackage{tikz,pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.8}
 
 % Layout
+
+\definecolor{GeoDataViz_blue}{HTML}{009ADE}
+\definecolor{GeoDataViz_magenta}{HTML}{FF1F5B}
+\definecolor{GeoDataViz_green}{HTML}{00cd6c}
+
+\definecolor{GeoDataViz_purple}{HTML}{AF58BA}
+\definecolor{GeoDataViz_yellow}{HTML}{FFC61E}
+\definecolor{GeoDataViz_orange}{HTML}{F28522}
+
+\definecolor{GeoDataViz_amber}{HTML}{FFAA00}
+\definecolor{GeoDataViz_red}{HTML}{E9002D}
+
+\definecolor{BlockColor}{HTML}{9c64e0}
+
 
 %% Title
 \colorlet{backgroundcolor}{white}
@@ -50,6 +63,21 @@
 }
 \makeatother
 
+%% Block
+\defineblockstyle{myblock}{
+	titleleft, roundedcorners=0, linewidth=10pt,
+}{
+	\draw[color=framecolor, fill=blockbodybgcolor,
+		rounded corners=\blockroundedcorners] (blockbody.south west)
+	rectangle (blockbody.north east);
+	\ifBlockHasTitle
+		\draw[color=framecolor, fill=blocktitlebgcolor,
+			rounded corners=\blockroundedcorners] (blocktitle.south west)
+		rectangle (blocktitle.north east);
+	\fi
+}
+\useblockstyle{myblock}
+
 % Metadata
 \title{Classifier-based latency estimation for covert attention ERP decoding}
 \author{
@@ -73,27 +101,82 @@
 \maketitle
 \begin{columns}
 	\column{0.33}
-	\block{1. Truly gaze-independent visual oddball interface}{
-
-		\subsection*{Eye motor disability}
+	\colorlet{blockbodybgcolor}{black!10}
+	\colorlet{blockbodyfgcolor}{black!80}
+	\colorlet{blocktitlebgcolor}{BlockColor}
+	\colorlet{blocktitlefgcolor}{white}
+	\colorlet{framecolor}{black!50}
+	\block{1. Gaze-independent visual oddball interface}{
+		\subsection*{\color{black} Eye motor disability}
 
 		\begin{minipage}{.48\linewidth}
-			The BCI target population suffers from \textbf{eye motor disabilities}. This warrants the development of gaze-independent communication paradigms. While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \textbf{spatial attention} often yield the highest ITR~\cite{Riccio2012}.
+			The BCI target population suffers from \textcolor{black}{eye motor disabilities}. This warrants the development of gaze-independent communication paradigms. While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \textcolor{black}{spatial attention} often yield the highest ITR~\cite{Riccio2012}.
 		\end{minipage}%
 		\hfill
 		\begin{minipage}{.48\linewidth}
 			\centering
-			\textbf{Eye motor disabilities in patients}
+
+			\textcolor{black}{Eye motor disabilities in patients}
 			\bigskip
 
-			\begin{tabular}{@{}|l|rrr|r|@{}}
-				\hline
-				         & ALS  & MS   & Stroke  &
-				\cellcolor{yellow!25}\textbf{LiS}                                         \\ \hline
-				Minor    & 50\% & 31\% & 40-70\% & \cellcolor{yellow!25}                  \\
-				Severe   & 33\% & 3\%  & +       & \cellcolor{yellow!25}\color{black}98\% \\
-				Complete & 17\% & -    & +       & \cellcolor{yellow!25}\color{black}2\%  \\ \hline
-			\end{tabular}
+
+			\begin{tikzpicture}
+				\begin{axis}[
+						xbar stacked,
+						symbolic y coords ={ALS,MS,Stroke,LiS},
+						xlabel={incidence},
+						bar width=.7em,
+						legend style={
+								at={(0.5,-0.30)},
+								anchor=north,
+								legend columns=-1,
+								draw=none,
+								fill=none,
+							},
+						axis line style={draw=none},
+						tick style={draw=none},
+						xtick=\empty
+					]
+					\addplot+[fill=BlockColor!33, draw=none] coordinates{
+							(50,ALS)
+							(31,MS)
+							(55,Stroke)
+							(0,LiS)
+						};
+					\addplot+[fill=BlockColor!66, draw=none] coordinates{
+							(33,ALS)
+							(31,MS)
+							(0,Stroke)
+							(98,LiS)
+						};
+					\addplot+[fill=BlockColor, draw=none] coordinates{
+							(17,ALS)
+							(0,MS)
+							(0,Stroke)
+							(2,LiS)
+						};
+
+					\legend{\strut minor, \strut severe, \strut complete}
+					\draw[color=gray] (axis cs:0,LiS) to (axis cs:100,LiS);
+					\draw[color=gray] (axis cs:0,Stroke) to (axis cs:100,Stroke);
+					\draw[color=gray] (axis cs:0,MS) to (axis cs:100,MS);
+					\draw[color=gray] (axis cs:0,ALS) to (axis cs:100,ALS);
+
+				\end{axis}
+
+
+
+
+			\end{tikzpicture}
+
+			%\begin{tabular}{@{}|l|rrr|r|@{}}
+			%	\hline
+			%	         & ALS  & MS   & Stroke  &
+			%	\cellcolor{BlockColor}\textbf{LiS}                                         \\ \hline
+			%	Minor    & 50\% & 31\% & 40-70\% & \cellcolor{BlockColor}                  \\
+			%	Severe   & 33\% & 3\%  & +       & \cellcolor{BlockColor}\color{black}98\% \\
+			%	Complete & 17\% & -    & +       & \cellcolor{BlockColor}\color{black}2\%  \\ \hline
+			%\end{tabular}
 		\end{minipage}
 
 
@@ -102,6 +185,15 @@
 		%Usually, a visual brain-computer interface is operated in \textbf{overt} attention mode, where the user directs their gaze to the intended target.
 		%Patients with eye motor disabilities are not always able to comfortably perform overt attention.
 		%Hence, \textbf{covert} attention paradigms have been designed where the user gazes at the center of the screen and selects targets in their visual periphery. Covert attention suffers from poor decoding performance, but this can be improved using \textbf{jitter correction}~\cite{Arico2014}. Further dissociating mental and visual attention
+
+		%		\note{overt attention}
+
+		\begin{tcolorbox}[sharp corners=all,
+				colback=GeoDataViz_blue,coltext=white,
+				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+			]
+			Overt attention
+		\end{tcolorbox}
 
 		\begin{minipage}{.48\linewidth}
 			\includegraphics[width=\linewidth]{figures/attention_overt.pdf}
@@ -113,6 +205,14 @@
 		\bigskip
 		\bigskip
 
+		\begin{tcolorbox}[sharp corners=all,
+				colback=GeoDataViz_magenta,coltext=white,
+				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+			]
+			Covert attention
+		\end{tcolorbox}
+
+
 		\begin{minipage}{.48\linewidth}
 			\includegraphics[width=\linewidth]{figures/attention_covert.pdf}
 		\end{minipage}%
@@ -122,6 +222,14 @@
 		\end{minipage}%
 		\bigskip
 		\bigskip
+
+		\begin{tcolorbox}[sharp corners=all,
+				colback=GeoDataViz_green,coltext=white,
+				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+			]
+			Split attention
+		\end{tcolorbox}
+
 
 		\begin{minipage}{.48\linewidth}
 			\includegraphics[width=\linewidth]{figures/attention_split.pdf}
@@ -141,8 +249,14 @@
 
 	\column{0.33}
 	\block{2. Novel ERP latency estimation procedure}{
-		\cite{Sosulski2022}
-		\textbf{Classifier-Based Latency Estimation (CBLE)}~\cite{Mowla2017}
+		\subsection*{The jitter problem}
+		Covert attention decoding suffers from the jitter problem ILLUSTRATE~
+		Covert attention decoding can be improved by jitter correction~\cite{Arico2014}
+		Classifier-based latency estimation~\cite{Mowla2017}, paired with a time-regularized linear classifier~\cite{Sosulski2022},
+		can yield the latencies to correct ERP jitter.
+
+
+		\subsection*{Woody Classifier-Based Latency Estimation (wCBLE)}
 		\begin{tikzfigure}
 			\begin{tikzpicture}
 				\node[draw,align=center](class){Spatiotemporal \\ classifier weights};
@@ -151,39 +265,12 @@
 				\node[draw,below=.5 of a1,align=center, xshift=-1.5in](latency) {Latencies};
 				\node[draw,below=.5 of a1,align=center,xshift=1.5in](wav) {Wavelet coefs};
 				\node[draw,left=of class,align=center](epochs) {Epochs};
-				\node[below=.5of latency, xshift=1.5in](a2){};
-				\node[draw, below= of a2,align=center](svm) {SVM};
-
-				\draw[-{Latex[length=.2in]}] (epochs) to (class);
-				\draw[-{Latex[length=5mm]}] (epochs) |- (class);
-				\draw (class) to (xcorr);
-				\draw (xcorr) to (a1.center);
-				\draw[-{Latex[length=5mm]}] (a1.center) -| (latency);
-				\draw[-{Latex[length=5mm]}] (a1.center) -| (wav);
-				\draw (epochs) |- (xcorr);
-				\draw (latency) |- (a2.center);
-				\draw (wav) |- (a2.center);
-				\draw[-{Latex[length=5mm]}] (a2.center)  to (svm);
-			\end{tikzpicture}
-
-
-		\end{tikzfigure}
-		\bigskip
-
-		\textbf{Woody Classifier-Based Latency Estimation (wCBLE)}
-		\begin{tikzfigure}
-			\begin{tikzpicture}
-				\node[draw,align=center](class){Spatiotemporal \\ classifier weights};
-				\node[below=of class,align=center](xcorr) {$\star$};
-				\node[below=.5of xcorr](a1){};
-				\node[draw,below=.5 of a1,align=center, xshift=-1.5in](latency) {Latencies};
-				\node[draw,below=.5 of a1,align=center,xshift=1.5in](wav) {Wavelet coefs};
-				\node[draw,left=of class,align=center](epochs) {Epochs};
-				\node[left=3 of latency, align=center](align){align to \\ latencies};
+				\node[left=3 of latency, align=center, text=BlockColor](align){align to \\ latencies};
 				\node[below=.5of latency, xshift=1.5in](a2){};
 				\node[draw, below= of a2,align=center](svm) {SVM};
 				\node[left=.5of epochs](a3){};
 
+
 				\draw[-{Latex[length=.2in]}] (epochs) to (class);
 				\draw[-{Latex[length=5mm]}] (epochs) |- (class);
 				\draw (class) to (xcorr);
@@ -194,9 +281,10 @@
 				\draw (latency) |- (a2.center);
 				\draw (wav) |- (a2.center);
 				\draw[-{Latex[length=5mm]}] (a2.center)  to (svm);
-				\draw (latency)  to (align);
-				\draw (align.north)  |- (a3.center);
-				\draw[-{Latex[length=5mm]}] (a3.center)  to (epochs);
+				\draw[color=BlockColor] (latency)  to (align);
+				\draw[,color=BlockColor] (align.north)  |- (a3.center);
+				\draw[-{Latex[length=5mm]},color=BlockColor] (a3.center)  to (epochs);
+
 			\end{tikzpicture}
 
 
@@ -225,13 +313,16 @@
 
 		\includegraphics[width=\linewidth]{figures/classification_results_rel.eps}
 	}
+
 	\block{Conclusion}{
 		\begin{enumerate}
 			\item
 			\item
-			\item
+			\item Algorithm that can be used in online decoding
 		\end{enumerate}
 	}
+	\colorlet{blockbodybgcolor}{gray!20}
+
 	\block{References}{
 		\printbibliography[heading=none]
 	}

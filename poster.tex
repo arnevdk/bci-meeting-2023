@@ -1,4 +1,4 @@
-\documentclass[25pt, a0paper, landscape]{tikzposter}
+\documentclass[25pt, a0paper, landscape,innermargin=1in,margin=1in]{article}
 
 % Preamble
 \usepackage{tikz}
@@ -6,7 +6,7 @@
 \usetikzlibrary{arrows.meta,arrows}
 \usepackage{tcolorbox}
 \usepackage{xcolor}
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,doi=false,url=false,isbn=false,eprint=false]{biblatex}
 \usepackage{colortbl}
 \usepackage[default,oldstyle,scale=0.95]{opensans} %% Alternatively
 %% use the option 'defaultsans' instead of 'default' to replace the
@@ -14,9 +14,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{tikz,pgfplots,pgfplotstable}
 \pgfplotsset{compat=1.8}
+\usepackage{enumitem}
+\usepackage{titlesec}
 
 % Layout
-
+\titlespacing*{\subsection}{0pt}{.5\baselineskip}{.5\baselineskip}
 \definecolor{GeoDataViz_blue}{HTML}{009ADE}
 \definecolor{GeoDataViz_magenta}{HTML}{FF1F5B}
 \definecolor{GeoDataViz_green}{HTML}{00cd6c}
@@ -30,53 +32,58 @@
 
 \definecolor{BlockColor}{HTML}{9c64e0}
 
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=BlockColor,text width=1em,align=center,draw=none,text=white,inner sep=2pt] (char) {#1};}}
 
 %% Title
 \colorlet{backgroundcolor}{white}
 \definetitlestyle{mytitle}{
-	width=.99\linewidth,
-}{}
+	width=\textwidth,
+	titletoblockverticalspace=0pt,
+}{\begin{scope}[line width=\titlelinewidth,]
+	\end{scope}}
+
 \usetitlestyle{mytitle}
 %%% Title wrap
-\makeatletter
-\def\title#1{\gdef\@title{\scalebox{\TP@titletextscale}{%
-			\begin{minipage}[t]{\linewidth}
-				#1
-				\par
-			\end{minipage}%
-		}}}
-\makeatother
-%%% Title structure
-\makeatletter
-\renewcommand\TP@maketitle{%
-	\begin{minipage}[t]{0.35\linewidth}
-		\color{titlefgcolor}
-		{\fontseries{sb}\selectfont \Huge {\@title}}
-		{\large \@author \par}
-		{\@institute \par}
-	\end{minipage}%
-	\hfill
-	\begin{minipage}[t]{0.65\linewidth}
-		~\\
-		\hspace*{\fill}\@titlegraphic
-	\end{minipage}
-}
-\makeatother
+%\makeatletter
+%\def\title#1{\gdef\@title{\scalebox{\TP@titletextscale}{%
+%			\begin{minipage}[t]{\linewidth}
+%				#1
+%				\par
+%			\end{minipage}%
+%		}}}
+%\makeatother
+%%%%% Title structure
+%\makeatletter
+%\renewcommand\TP@maketitle{%
+%	\begin{minipage}[t]{0.35\linewidth}
+%		\color{titlefgcolor}
+%		{\fontseries{sb}\selectfont \Huge {\@title}}
+%		{\large \@author \par}
+%		{\@institute \par}
+%	\end{minipage}%
+%	\hfill
+%	\begin{minipage}[t]{0.65\linewidth}
+%		~\\
+%		\hspace*{\fill}\@titlegraphic
+%	\end{minipage}
+%}
+%\makeatother
 
 %% Block
-\defineblockstyle{myblock}{
-	titleleft, roundedcorners=0, linewidth=10pt,
-}{
-	\draw[color=framecolor, fill=blockbodybgcolor,
-		rounded corners=\blockroundedcorners] (blockbody.south west)
-	rectangle (blockbody.north east);
-	\ifBlockHasTitle
-		\draw[color=framecolor, fill=blocktitlebgcolor,
-			rounded corners=\blockroundedcorners] (blocktitle.south west)
-		rectangle (blocktitle.north east);
-	\fi
-}
-\useblockstyle{myblock}
+%\defineblockstyle{myblock}{
+%	titleleft, roundedcorners=0, linewidth=10pt,
+%}{
+%	\draw[color=framecolor, fill=blockbodybgcolor,
+%		rounded corners=\blockroundedcorners] (blockbody.south west)
+%	rectangle (blockbody.north east);
+%	\ifBlockHasTitle
+%		\draw[color=framecolor, fill=blocktitlebgcolor,
+%			rounded corners=\blockroundedcorners] (blocktitle.south west)
+%		rectangle (blocktitle.north east);
+%	\fi
+%}
+%\useblockstyle{myblock}
 
 % Metadata
 \title{Classifier-based latency estimation for covert attention ERP decoding}
@@ -124,6 +131,8 @@
 				\begin{axis}[
 						xbar stacked,
 						symbolic y coords ={ALS,MS,Stroke,LiS},
+						yticklabels={ALS,MS,Stroke,LiS},
+						ytick={ALS,MS,Stroke,LiS},
 						xlabel={incidence},
 						bar width=.7em,
 						legend style={
@@ -132,24 +141,25 @@
 								legend columns=-1,
 								draw=none,
 								fill=none,
+								column sep=.5em,
 							},
 						axis line style={draw=none},
 						tick style={draw=none},
 						xtick=\empty
 					]
-					\addplot+[fill=BlockColor!33, draw=none] coordinates{
+					\addplot+[fill=BlockColor!33, draw=BlockColor!33] coordinates{
 							(50,ALS)
 							(31,MS)
 							(55,Stroke)
 							(0,LiS)
 						};
-					\addplot+[fill=BlockColor!66, draw=none] coordinates{
+					\addplot+[fill=BlockColor!66, draw=BlockColor!66] coordinates{
 							(33,ALS)
 							(31,MS)
 							(0,Stroke)
 							(98,LiS)
 						};
-					\addplot+[fill=BlockColor, draw=none] coordinates{
+					\addplot+[fill=BlockColor, draw=BlockColor] coordinates{
 							(17,ALS)
 							(0,MS)
 							(0,Stroke)
@@ -175,12 +185,12 @@
 			%	\cellcolor{BlockColor}\textbf{LiS}                                         \\ \hline
 			%	Minor    & 50\% & 31\% & 40-70\% & \cellcolor{BlockColor}                  \\
 			%	Severe   & 33\% & 3\%  & +       & \cellcolor{BlockColor}\color{black}98\% \\
-			%	Complete & 17\% & -    & +       & \cellcolor{BlockColor}\color{black}2\%  \\ \hline
+			%	Complete & 17\% & -    & +       & \cellcolor{ALignment improves SNR}\color{black}2\%  \\ \hline
 			%\end{tabular}
 		\end{minipage}
 
 
-		\subsection*{Visual attention settings}
+		\subsection*{\color{black} Usual visual attention settings}
 		%\includegraphics[width=\linewidth]{figures/attention_modes.eps}
 		%Usually, a visual brain-computer interface is operated in \textbf{overt} attention mode, where the user directs their gaze to the intended target.
 		%Patients with eye motor disabilities are not always able to comfortably perform overt attention.
@@ -188,29 +198,22 @@
 
 		%		\note{overt attention}
 
-		\begin{tcolorbox}[sharp corners=all,
-				colback=GeoDataViz_blue,coltext=white,
-				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
-			]
-			Overt attention
-		\end{tcolorbox}
-
 		\begin{minipage}{.48\linewidth}
 			\includegraphics[width=\linewidth]{figures/attention_overt.pdf}
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
+			\begin{tcolorbox}[sharp corners=all,
+					colback=GeoDataViz_blue,coltext=white,
+					fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+				]
+				Overt attention
+			\end{tcolorbox}
+
 			Persons with full eye motor control can gaze at intended targets.
 		\end{minipage}%
 		\bigskip
 		\bigskip
-
-		\begin{tcolorbox}[sharp corners=all,
-				colback=GeoDataViz_magenta,coltext=white,
-				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
-			]
-			Covert attention
-		\end{tcolorbox}
 
 
 		\begin{minipage}{.48\linewidth}
@@ -218,17 +221,19 @@
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
+			\begin{tcolorbox}[sharp corners=all,
+					colback=GeoDataViz_magenta,coltext=white,
+					fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+				]
+				Covert attention
+			\end{tcolorbox}
+
 			Fixating the gaze at the center is a common solution, but this also requires a degree of eye motor control.
 		\end{minipage}%
 		\bigskip
 		\bigskip
 
-		\begin{tcolorbox}[sharp corners=all,
-				colback=GeoDataViz_green,coltext=white,
-				fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
-			]
-			Split attention
-		\end{tcolorbox}
+		\subsection*{\color{black} Proposed visual attention setting}
 
 
 		\begin{minipage}{.48\linewidth}
@@ -236,6 +241,13 @@
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
+			\begin{tcolorbox}[sharp corners=all,
+					colback=GeoDataViz_green,coltext=white,
+					fontupper=\bfseries,boxrule=0mm,boxsep=5mm,
+				]
+				Split attention
+			\end{tcolorbox}
+
 			We design an interface that allows for the split attention conditions that can occurr in patients with involuntary eye movements.
 		\end{minipage}%
 
@@ -250,10 +262,11 @@
 	\column{0.33}
 	\block{2. Novel ERP latency estimation procedure}{
 		\subsection*{The jitter problem}
-		Covert attention decoding suffers from the jitter problem ILLUSTRATE~
-		Covert attention decoding can be improved by jitter correction~\cite{Arico2014}
+		Decoding performance in covert attention settings can be improved by jitter correction~\cite{Arico2014}.
+		Latency jitter is the variance in ERP latency. High jitter decreases SNR when averaging over multiple trials.
+		In order to correct for jitter, an algorithm must accurately estimate single-trial ERP latencies.
 		Classifier-based latency estimation~\cite{Mowla2017}, paired with a time-regularized linear classifier~\cite{Sosulski2022},
-		can yield the latencies to correct ERP jitter.
+		can yield the latencies to correct ERP jitter. We propose an iterative improvement that yields good results for our use case.
 
 
 		\subsection*{Woody Classifier-Based Latency Estimation (wCBLE)}
@@ -270,6 +283,8 @@
 				\node[draw, below= of a2,align=center](svm) {SVM};
 				\node[left=.5of epochs](a3){};
 
+				\node[right=3in of xcorr,fill=white,circle,draw=BlockColor](xcorr_fig){\includegraphics[width=.2\linewidth]{figures/xcorr.eps}};
+
 
 				\draw[-{Latex[length=.2in]}] (epochs) to (class);
 				\draw[-{Latex[length=5mm]}] (epochs) |- (class);
@@ -285,46 +300,52 @@
 				\draw[,color=BlockColor] (align.north)  |- (a3.center);
 				\draw[-{Latex[length=5mm]},color=BlockColor] (a3.center)  to (epochs);
 
+				\draw[color=BlockColor,dashed] (xcorr) to (xcorr_fig.west);
+
 			\end{tikzpicture}
 
 
 		\end{tikzfigure}
 
 		\bigskip
-		\textbf{Convergence}
 
-		\includegraphics[width=\linewidth]{figures/convergence.png}
 
 		\bigskip
-		\textbf{Alignment}
+		\subsection*{ALignment improves SNR}
+		\includegraphics[width=\linewidth]{figures/aligned.eps}
+
+		\subsection*{Convergence}
+		\includegraphics[width=\linewidth]{figures/convergence.eps}
 	}
 
 	\column{0.33}
 	\block{3. Improvement in covert attention decoding}{
+		\subsection*{Preprocessing}
 		\begin{enumerate}
-			\item Band-pass .5 to 32Hz
+			\item Band-pass filter between .5 to 32Hz
 			\item Resample to 64Hz
 			\item ICA Eye artifact rejection
 			\item Remove bad trials according to eye-tracker
-			\item Subtract non-target average
+			\item \textcolor{black}{Subtract non-target average}
 		\end{enumerate}
+
+		\subsection*{Single trial classificatin performance}
 
 		\includegraphics[width=.5\linewidth]{figures/classification_results_diff.png}
 
 		\includegraphics[width=\linewidth]{figures/classification_results_rel.eps}
 	}
 
-	\block{Conclusion}{
-		\begin{enumerate}
-			\item
-			\item
-			\item Algorithm that can be used in online decoding
-		\end{enumerate}
-	}
-	\colorlet{blockbodybgcolor}{gray!20}
-
-	\block{References}{
-		\printbibliography[heading=none]
+	%	\block{Conclusions}{
+	%		\begin{enumerate}[label=\protect\circled{\textbf{\arabic*}}]
+	%			\item Forced covert attention is not gaze-independent
+	%			\item We propose a novel algorithm that can be applied in off-line and on-line decoding
+	%			\item The proposed algorithm improves results in covert attention decoding, but weakens performance in the overt and the split attentoin setting.
+	%		\end{enumerate}
+	%	}
+	\block{}{
+		\tiny
+		\printbibliography
 	}
 \end{columns}
 

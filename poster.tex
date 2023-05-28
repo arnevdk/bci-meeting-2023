@@ -1,4 +1,4 @@
-\documentclass[25pt, a0paper, landscape,innermargin=1in,margin=1in]{article}
+\documentclass[25pt, a0paper, landscape]{tikzposter}
 
 % Preamble
 \usepackage{tikz}
@@ -38,52 +38,52 @@
 %% Title
 \colorlet{backgroundcolor}{white}
 \definetitlestyle{mytitle}{
-	width=\textwidth,
+	width=.992\textwidth,
 	titletoblockverticalspace=0pt,
 }{\begin{scope}[line width=\titlelinewidth,]
 	\end{scope}}
 
 \usetitlestyle{mytitle}
-%%% Title wrap
-%\makeatletter
-%\def\title#1{\gdef\@title{\scalebox{\TP@titletextscale}{%
-%			\begin{minipage}[t]{\linewidth}
-%				#1
-%				\par
-%			\end{minipage}%
-%		}}}
-%\makeatother
-%%%%% Title structure
-%\makeatletter
-%\renewcommand\TP@maketitle{%
-%	\begin{minipage}[t]{0.35\linewidth}
-%		\color{titlefgcolor}
-%		{\fontseries{sb}\selectfont \Huge {\@title}}
-%		{\large \@author \par}
-%		{\@institute \par}
-%	\end{minipage}%
-%	\hfill
-%	\begin{minipage}[t]{0.65\linewidth}
-%		~\\
-%		\hspace*{\fill}\@titlegraphic
-%	\end{minipage}
-%}
-%\makeatother
+%% Title wrap
+\makeatletter
+\def\title#1{\gdef\@title{\scalebox{\TP@titletextscale}{%
+			\begin{minipage}[t]{\linewidth}
+				#1
+				\par
+			\end{minipage}%
+		}}}
+\makeatother
+%%%% Title structure
+\makeatletter
+\renewcommand\TP@maketitle{%
+	\begin{minipage}[t]{0.35\linewidth}
+		\color{titlefgcolor}
+		{\fontseries{sb}\selectfont \Huge {\@title}}
+		{\large \@author \par}
+		{\@institute \par}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.65\linewidth}
+		~\\
+		\hspace*{\fill}\@titlegraphic
+	\end{minipage}
+}
+\makeatother
 
-%% Block
-%\defineblockstyle{myblock}{
-%	titleleft, roundedcorners=0, linewidth=10pt,
-%}{
-%	\draw[color=framecolor, fill=blockbodybgcolor,
-%		rounded corners=\blockroundedcorners] (blockbody.south west)
-%	rectangle (blockbody.north east);
-%	\ifBlockHasTitle
-%		\draw[color=framecolor, fill=blocktitlebgcolor,
-%			rounded corners=\blockroundedcorners] (blocktitle.south west)
-%		rectangle (blocktitle.north east);
-%	\fi
-%}
-%\useblockstyle{myblock}
+% Block
+\defineblockstyle{myblock}{
+	titleleft, roundedcorners=0, linewidth=10pt,
+}{
+	\draw[color=framecolor, fill=blockbodybgcolor,
+		rounded corners=\blockroundedcorners] (blockbody.south west)
+	rectangle (blockbody.north east);
+	\ifBlockHasTitle
+		\draw[color=framecolor, fill=blocktitlebgcolor,
+			rounded corners=\blockroundedcorners] (blocktitle.south west)
+		rectangle (blocktitle.north east);
+	\fi
+}
+\useblockstyle{myblock}
 
 % Metadata
 \title{Classifier-based latency estimation for covert attention ERP decoding}
@@ -107,7 +107,7 @@
 \begin{document}
 \maketitle
 \begin{columns}
-	\column{0.33}
+	\column{0.33333333333333333333333}
 	\colorlet{blockbodybgcolor}{black!10}
 	\colorlet{blockbodyfgcolor}{black!80}
 	\colorlet{blocktitlebgcolor}{BlockColor}
@@ -259,7 +259,7 @@
 	}
 
 
-	\column{0.33}
+	\column{0.333333333333333333333333333333333333333333}
 	\block{2. Novel ERP latency estimation procedure}{
 		\subsection*{The jitter problem}
 		Decoding performance in covert attention settings can be improved by jitter correction~\cite{Arico2014}.
@@ -318,7 +318,7 @@
 		\includegraphics[width=\linewidth]{figures/convergence.eps}
 	}
 
-	\column{0.33}
+	\column{0.3333333333333333333333333333333333333333}
 	\block{3. Improvement in covert attention decoding}{
 		\subsection*{Preprocessing}
 		\begin{enumerate}

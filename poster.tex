@@ -16,6 +16,7 @@
 \pgfplotsset{compat=1.8}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{graphicx}
 
 % Layout
 \titlespacing*{\subsection}{0pt}{.5\baselineskip}{.5\baselineskip}
@@ -33,7 +34,7 @@
 \definecolor{BlockColor}{HTML}{9c64e0}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
-		\node[shape=circle,fill=BlockColor,text width=1em,align=center,draw=none,text=white,inner sep=2pt] (char) {#1};}}
+		\node[shape=circle,fill=white,text width=1em,align=center,draw=none,text=BlockColor,inner sep=2pt] (char) {#1};}}
 
 %% Title
 \colorlet{backgroundcolor}{white}
@@ -113,11 +114,11 @@
 	\colorlet{blocktitlebgcolor}{BlockColor}
 	\colorlet{blocktitlefgcolor}{white}
 	\colorlet{framecolor}{black!50}
-	\block{1. Gaze-independent visual oddball interface}{
+	\block{\circled{1} Gaze-independent visual oddball interface}{
 		\subsection*{\color{black} Eye motor disability}
 
 		\begin{minipage}{.48\linewidth}
-			The BCI target population suffers from \textcolor{black}{eye motor disabilities}. This warrants the development of gaze-independent communication paradigms. While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \textcolor{black}{spatial attention} often yield the highest ITR~\cite{Riccio2012}.
+			The BCI target population suffers from \textcolor{black}{eye motor disabilities}. This warrants the development of gaze-independent communication paradigms. While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \textcolor{black}{spatial attention} often yield the highest ITR~\cite{Riccio2012}. We aim to design a visual oddball interface that can be operated efficiently by a gaze-impaired patient through accurate covert attention classification.
 		\end{minipage}%
 		\hfill
 		\begin{minipage}{.48\linewidth}
@@ -199,7 +200,8 @@
 		%		\note{overt attention}
 
 		\begin{minipage}{.48\linewidth}
-			\includegraphics[width=\linewidth]{figures/attention_overt.pdf}
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/attention_overt.pdf}
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
@@ -217,7 +219,8 @@
 
 
 		\begin{minipage}{.48\linewidth}
-			\includegraphics[width=\linewidth]{figures/attention_covert.pdf}
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/attention_covert.pdf}
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
@@ -237,7 +240,8 @@
 
 
 		\begin{minipage}{.48\linewidth}
-			\includegraphics[width=\linewidth]{figures/attention_split.pdf}
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/attention_split.pdf}
 		\end{minipage}%
 		\hfill%
 		\begin{minipage}{.48\linewidth}
@@ -254,14 +258,15 @@
 
 
 
-		\subsection*{Experimental protocol}
-		\includegraphics[width=\linewidth]{figures/paradigm.eps}
+		\subsection*{\color{black} Experimental protocol}
+
+		\includegraphics[width=\linewidth]{figures/timeline.eps}
 	}
 
 
 	\column{0.333333333333333333333333333333333333333333}
-	\block{2. Novel ERP latency estimation procedure}{
-		\subsection*{The jitter problem}
+	\block{\circled{2} Novel ERP latency estimation procedure}{
+		\subsection*{\color{black} The jitter problem}
 		Decoding performance in covert attention settings can be improved by jitter correction~\cite{Arico2014}.
 		Latency jitter is the variance in ERP latency. High jitter decreases SNR when averaging over multiple trials.
 		In order to correct for jitter, an algorithm must accurately estimate single-trial ERP latencies.
@@ -269,7 +274,7 @@
 		can yield the latencies to correct ERP jitter. We propose an iterative improvement that yields good results for our use case.
 
 
-		\subsection*{Woody Classifier-Based Latency Estimation (wCBLE)}
+		\subsection*{\color{black} Woody Classifier-Based Latency Estimation (wCBLE)}
 		\begin{tikzfigure}
 			\begin{tikzpicture}
 				\node[draw,align=center](class){Spatiotemporal \\ classifier weights};
@@ -311,16 +316,16 @@
 
 
 		\bigskip
-		\subsection*{ALignment improves SNR}
+		\subsection*{\color{black} Alignment improves SNR}
 		\includegraphics[width=\linewidth]{figures/aligned.eps}
 
-		\subsection*{Convergence}
+		\subsection*{\color{black} Convergence}
 		\includegraphics[width=\linewidth]{figures/convergence.eps}
 	}
 
 	\column{0.3333333333333333333333333333333333333333}
-	\block{3. Improvement in covert attention decoding}{
-		\subsection*{Preprocessing}
+	\block{\circled{3} Improvement in covert attention decoding}{
+		\subsection*{\color{black} Preprocessing}
 		\begin{enumerate}
 			\item Band-pass filter between .5 to 32Hz
 			\item Resample to 64Hz
@@ -329,11 +334,14 @@
 			\item \textcolor{black}{Subtract non-target average}
 		\end{enumerate}
 
-		\subsection*{Single trial classificatin performance}
+		\subsection*{\color{black} Single trial classification performance}
 
 		\includegraphics[width=.5\linewidth]{figures/classification_results_diff.png}
+		\includegraphics[width=.5\linewidth]{example-image-a}
 
 		\includegraphics[width=\linewidth]{figures/classification_results_rel.eps}
+
+		While covert attention decoding performance is significantly improved, there is a significant decrease in overt attention performance. This is probably due to the high contribution of early visual ERP components in overt attention, which are destroyed by the alignment procedure. No significant effect is observed for split attention decoding.
 	}
 
 	%	\block{Conclusions}{
@@ -343,9 +351,9 @@
 	%			\item The proposed algorithm improves results in covert attention decoding, but weakens performance in the overt and the split attentoin setting.
 	%		\end{enumerate}
 	%	}
-	\block{}{
+	\block{References}{
 		\tiny
-		\printbibliography
+		\printbibliography[heading=none]
 	}
 \end{columns}
 

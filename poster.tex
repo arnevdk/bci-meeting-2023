@@ -1,4 +1,5 @@
 \documentclass[25pt, a0paper, landscape]{tikzposter}
+\tikzposterlatexaffectionproofoff
 
 % Preamble
 \usepackage{tikz}
@@ -284,7 +285,9 @@
 
 		\subsection*{\color{black} Woody Classifier-Based Latency Estimation (wCBLE)}
 		\begin{tikzfigure}
-			\begin{tikzpicture}
+			\begin{tikzpicture}[
+					line width=2pt
+				]
 				\node[draw,align=center](class){Spatiotemporal \\ classifier weights};
 				\node[below=of class,align=center](xcorr) {$\star$};
 				\node[below=.5of xcorr](a1){};
@@ -343,8 +346,7 @@
 
 		\subsection*{\color{black} Single trial classification performance}
 
-		\includegraphics[width=.5\linewidth]{figures/classification_results_diff.png}
-		\includegraphics[width=.5\linewidth]{example-image-a}
+		\includegraphics[width=\linewidth]{figures/classification_results_iter.png}
 
 		\includegraphics[width=\linewidth]{figures/classification_results_rel.eps}
 

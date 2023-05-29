@@ -335,11 +335,9 @@
 	\block{\circled{3} Improvement in covert attention decoding}{
 		\subsection*{\color{black} Preprocessing}
 		\begin{enumerate}
-			\item Band-pass filter between .5 to 32Hz
-			\item Resample to 64Hz
+			\item Band-pass filter between 0.5 and 32Hz
 			\item ICA Eye artifact rejection
 			\item Remove bad trials according to eye-tracker
-			\item Reject high peak-to-peak amplitude training epochs
 			\item \myemph{Subtract non-target average}
 		\end{enumerate}
 

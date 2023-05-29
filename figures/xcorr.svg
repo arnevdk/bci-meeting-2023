@@ -26,15 +26,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="pt"
      showgrid="false"
-     inkscape:zoom="5.3401293"
-     inkscape:cx="30.710867"
-     inkscape:cy="96.626873"
+     inkscape:zoom="2.6700647"
+     inkscape:cx="-70.784803"
+     inkscape:cy="185.01425"
      inkscape:window-width="2560"
      inkscape:window-height="1371"
      inkscape:window-x="1920"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g46847" />
+     inkscape:current-layer="figure_1" />
   <metadata
      id="metadata35095">
     <rdf:RDF>
@@ -85,7 +85,7 @@
            id="path35183" />
       </g>
       <path
-         style="fill:none;stroke:#a9a9a9;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:2,1;stroke-dashoffset:0"
+         style="fill:#999999;stroke:#999999;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:2, 1;stroke-dashoffset:0"
          d="m 75.058913,104.93804 v 22.99372"
          id="path40617" />
       <g
@@ -172,12 +172,12 @@
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
            x="61.174644"
-           y="18.68524"
+           y="20.18524"
            id="text13965"><tspan
              sodipodi:role="line"
              style="font-size:8px;text-align:center;text-anchor:middle;stroke-width:0.75"
              x="61.174644"
-             y="18.68524"
+             y="20.18524"
              id="tspan13967">classifier weights</tspan></text>
         <text
            xml:space="preserve"
@@ -216,23 +216,23 @@
              id="tspan13967-1-6-2">score</tspan></text>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;font-family:sans-serif;fill:#9c64e0;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
+           style="font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;font-family:sans-serif;fill:#999999;fill-opacity:1;stroke:none;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:round"
            x="76.765076"
            y="136.69281"
            id="text13965-0"><tspan
              sodipodi:role="line"
-             style="font-size:8px;text-align:center;text-anchor:middle;stroke-width:0.75;fill:#9c64e0;fill-opacity:1"
+             style="font-size:8px;text-align:center;text-anchor:middle;stroke-width:0.75;fill:#999999;fill-opacity:1"
              x="76.765076"
              y="136.69281"
              id="tspan13967-3">latency</tspan></text>
         <path
-           d="m 102.63311,12.48424 v 2.56354 h -8.046543 v 3.07575 h 8.046543 v 2.56271 l 8.04654,-4.101 z"
+           d="m 102.63311,13.98424 v 2.56354 h -8.046543 v 3.07575 h 8.046543 v 2.56271 l 8.04654,-4.101 z"
            id="path31864"
-           style="fill:#9c64e0;fill-opacity:1;stroke-width:0.0117234;stroke-linecap:butt;stroke-linejoin:round" />
+           style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:0.0117234;stroke-linecap:butt;stroke-linejoin:round" />
         <path
-           d="m 19.796177,12.484235 v 2.56355 h 8.04654 v 3.07575 h -8.04654 v 2.56271 l -8.04654,-4.101 z"
+           d="m 19.796177,13.984235 v 2.56355 h 8.04654 v 3.07575 h -8.04654 v 2.56271 l -8.04654,-4.101 z"
            id="path31864-7"
-           style="fill:#9c64e0;fill-opacity:1;stroke-width:0.0117234;stroke-linecap:butt;stroke-linejoin:round" />
+           style="fill:#999999;fill-opacity:1;stroke:#999999;stroke-width:0.0117234;stroke-linecap:butt;stroke-linejoin:round" />
       </g>
     </g>
     <g

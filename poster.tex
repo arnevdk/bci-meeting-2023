@@ -54,7 +54,7 @@
 			\end{minipage}%
 		}}}
 \makeatother
-%%%% Title structure
+%% Title structure
 \makeatletter
 \renewcommand\TP@maketitle{%
 	\begin{minipage}[t]{0.35\linewidth}
@@ -85,6 +85,12 @@
 	\fi
 }
 \useblockstyle{myblock}
+%% Block height
+
+\newcommand{\myemph}[1]{
+	{\fontseries{sb}\selectfont\color{black} #1}
+}
+
 
 % Metadata
 \title{Classifier-based latency estimation for covert attention ERP decoding}
@@ -117,13 +123,15 @@
 	\block{\circled{1} Gaze-independent visual oddball interface}{
 		\subsection*{\color{black} Eye motor disability}
 
-		\begin{minipage}{.48\linewidth}
-			The BCI target population suffers from \textcolor{black}{eye motor disabilities}. This warrants the development of gaze-independent communication paradigms. While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \textcolor{black}{spatial attention} often yield the highest ITR~\cite{Riccio2012}. We aim to design a visual oddball interface that can be operated efficiently by a gaze-impaired patient through accurate covert attention classification.
+		\begin{minipage}{.5\linewidth}
+			The BCI target population suffers from \myemph{eye motor disabilities}, warranting the development of gaze-independent communication paradigms.
+			While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \myemph{spatial attention} often yield the highest ITR~\cite{Riccio2012}.
+			We aim to design a visual oddball interface that can be operated efficiently by gaze-impaired patients through accurate covert attention classification.
 		\end{minipage}%
 		\hfill
-		\begin{minipage}{.48\linewidth}
-			\centering
+		\begin{minipage}{.46\linewidth}
 
+			\centering
 			\textcolor{black}{Eye motor disabilities in patients}
 			\bigskip
 
@@ -191,7 +199,7 @@
 		\end{minipage}
 
 
-		\subsection*{\color{black} Usual visual attention settings}
+		\subsection*{\color{black} Conventional visual attention settings}
 		%\includegraphics[width=\linewidth]{figures/attention_modes.eps}
 		%Usually, a visual brain-computer interface is operated in \textbf{overt} attention mode, where the user directs their gaze to the intended target.
 		%Patients with eye motor disabilities are not always able to comfortably perform overt attention.
@@ -331,7 +339,8 @@
 			\item Resample to 64Hz
 			\item ICA Eye artifact rejection
 			\item Remove bad trials according to eye-tracker
-			\item \textcolor{black}{Subtract non-target average}
+			\item Reject high peak-to-peak amplitude training epochs
+			\item \myemph{Subtract non-target average}
 		\end{enumerate}
 
 		\subsection*{\color{black} Single trial classification performance}

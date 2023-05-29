@@ -1,5 +1,7 @@
 # TODO
-* Create emphasis command
-* find synonym for usual
-* fill in example image
-* vertical align
+
+-   Create emphasis command
+-   fill in example image
+-   vertical align
+-   Fix white box letters
+-   make axis indications gray

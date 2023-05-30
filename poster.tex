@@ -20,6 +20,7 @@
 \usepackage{graphicx}
 
 % Layout
+\renewcommand*{\bibfont}{\footnotesize}
 \titlespacing*{\subsection}{0pt}{.5\baselineskip}{.5\baselineskip}
 \definecolor{GeoDataViz_blue}{HTML}{009ADE}
 \definecolor{GeoDataViz_magenta}{HTML}{FF1F5B}
@@ -74,7 +75,7 @@
 
 % Block
 \defineblockstyle{myblock}{
-	titleleft, roundedcorners=0, linewidth=10pt,
+	titleleft, roundedcorners=0, linewidth=10pt
 }{
 	\draw[color=framecolor, fill=blockbodybgcolor,
 		rounded corners=\blockroundedcorners] (blockbody.south west)
@@ -88,9 +89,7 @@
 \useblockstyle{myblock}
 %% Block height
 
-\newcommand{\myemph}[1]{
-	{\fontseries{sb}\selectfont\color{black} #1}
-}
+\newcommand{\myemph}[1]{{\fontseries{sb}\selectfont\color{black} #1}}
 
 
 % Metadata
@@ -125,15 +124,15 @@
 		\subsection*{\color{black} Eye motor disability}
 
 		\begin{minipage}{.5\linewidth}
-			The BCI target population suffers from \myemph{eye motor disabilities}, warranting the development of gaze-independent communication paradigms.
-			While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting \myemph{spatial attention} often yield the highest ITR~\cite{Riccio2012}.
+			The BCI target population suffers from eye motor disabilities, warranting the development of gaze-independent communication paradigms.
+			While other active BCI modalities (auditory, somatosensory, ...) can work, visual paradigms exploiting spatial attention often yield the highest ITR~\cite{Riccio2012}.
 			We aim to design a visual oddball interface that can be operated efficiently by gaze-impaired patients through accurate covert attention classification.
 		\end{minipage}%
 		\hfill
 		\begin{minipage}{.46\linewidth}
 
 			\centering
-			\textcolor{black}{Eye motor disabilities in patients}
+			\textcolor{black}{Eye motor disability incidence \\ in patient populations (\%)}
 			\bigskip
 
 
@@ -143,7 +142,7 @@
 						symbolic y coords ={ALS,MS,Stroke,LiS},
 						yticklabels={ALS,MS,Stroke,LiS},
 						ytick={ALS,MS,Stroke,LiS},
-						xlabel={incidence},
+						%xlabel={incidence},
 						bar width=.7em,
 						legend style={
 								at={(0.5,-0.30)},
@@ -155,7 +154,7 @@
 							},
 						axis line style={draw=none},
 						tick style={draw=none},
-						xtick=\empty
+						xtick={0, 50, 100}
 					]
 					\addplot+[fill=BlockColor!33, draw=BlockColor!33] coordinates{
 							(50,ALS)
@@ -276,11 +275,11 @@
 	\column{0.333333333333333333333333333333333333333333}
 	\block{\circled{2} Novel ERP latency estimation procedure}{
 		\subsection*{\color{black} The jitter problem}
-		Decoding performance in covert attention settings can be improved by jitter correction~\cite{Arico2014}.
-		Latency jitter is the variance in ERP latency. High jitter decreases SNR when averaging over multiple trials.
+		Latency jitter correction improves covert attention decoding performance~\cite{Arico2014}.
+		High jitter decreases SNR when averaging over multiple trials.
 		In order to correct for jitter, an algorithm must accurately estimate single-trial ERP latencies.
-		Classifier-based latency estimation~\cite{Mowla2017}, paired with a time-regularized linear classifier~\cite{Sosulski2022},
-		can yield the latencies to correct ERP jitter. We propose an iterative improvement that yields good results for our use case.
+		Classifier-based latency estimation~\cite{Mowla2017}, paired with a time-regularized linear classifier~\cite{Sosulski2022} is a technique that can be used classify jittered signals and extract latencies.
+		We propose a more accurate latency estimation and classification algorithm that iteratively applies classifier-based latency estimation.
 
 
 		\subsection*{\color{black} Woody Classifier-Based Latency Estimation (wCBLE)}
@@ -289,8 +288,9 @@
 					line width=2pt
 				]
 				\node[draw,align=center](class){Spatiotemporal \\ classifier weights};
-				\node[below=of class,align=center](xcorr) {$\star$};
-				\node[below=.5of xcorr](a1){};
+				\node[below=of class,align=center](xcorr) {cross-correlation};
+				\node[draw, below=of xcorr,align=center](score) {score over time};
+				\node[below=.5of score](a1){};
 				\node[draw,below=.5 of a1,align=center, xshift=-1.5in](latency) {Latencies};
 				\node[draw,below=.5 of a1,align=center,xshift=1.5in](wav) {Wavelet coefs};
 				\node[draw,left=of class,align=center](epochs) {Epochs};
@@ -299,13 +299,14 @@
 				\node[draw, below= of a2,align=center](svm) {SVM};
 				\node[left=.5of epochs](a3){};
 
-				\node[right=3in of xcorr,fill=white,circle,draw=BlockColor](xcorr_fig){\includegraphics[width=.2\linewidth]{figures/xcorr.eps}};
+				\node[right=1.5in of xcorr,fill=white,circle,draw=BlockColor, align=center](xcorr_fig){\includegraphics[width=.2\linewidth]{figures/xcorr.eps}};
 
 
 				\draw[-{Latex[length=.2in]}] (epochs) to (class);
 				\draw[-{Latex[length=5mm]}] (epochs) |- (class);
 				\draw (class) to (xcorr);
-				\draw (xcorr) to (a1.center);
+				\draw[-{Latex[length=.2in]}] (xcorr) to (score);
+				\draw (score) to (a1.center);
 				\draw[-{Latex[length=5mm]}] (a1.center) -| (latency);
 				\draw[-{Latex[length=5mm]}] (a1.center) -| (wav);
 				\draw (epochs) |- (xcorr);
@@ -323,15 +324,14 @@
 
 		\end{tikzfigure}
 
-		\bigskip
 
-
-		\bigskip
 		\subsection*{\color{black} Alignment improves SNR}
-		\includegraphics[width=\linewidth]{figures/aligned.eps}
+		\centering
+		\includegraphics[width=.918\linewidth]{figures/aligned.pdf}
 
 		\subsection*{\color{black} Convergence}
-		\includegraphics[width=\linewidth]{figures/convergence.eps}
+		\centering
+		\includegraphics[width=.918\linewidth]{figures/convergence.eps}
 	}
 
 	\column{0.3333333333333333333333333333333333333333}
@@ -339,18 +339,20 @@
 		\subsection*{\color{black} Preprocessing}
 		\begin{enumerate}
 			\item Band-pass filter between 0.5 and 32Hz
-			\item ICA Eye artifact rejection
+			\item Resample to 64Hz
+			\item ICA eye artifact rejection
 			\item Remove bad trials according to eye-tracker
-			\item \myemph{Subtract non-target average}
+			\item Subtract non-target average
 		\end{enumerate}
 
 		\subsection*{\color{black} Single trial classification performance}
 
-		\includegraphics[width=\linewidth]{figures/classification_results_iter.png}
+		\centering
+		\includegraphics[width=.975\linewidth]{figures/classification_results_iter.png}
 
 		\includegraphics[width=\linewidth]{figures/classification_results_rel.eps}
 
-		While covert attention decoding performance is significantly improved, there is a significant decrease in overt attention performance. This is probably due to the high contribution of early visual ERP components in overt attention, which are destroyed by the alignment procedure. No significant effect is observed for split attention decoding.
+		While covert attention decoding performance is significantly improved, there is a significant decrease in overt attention performance. This is probably due to the high contribution of early visual ERP components in overt attention, which are destroyed by the alignment procedure. No significant effect is observed for split attention decoding. Future work will investigate a multi-component approach.
 	}
 
 	%	\block{Conclusions}{
@@ -360,8 +362,7 @@
 	%			\item The proposed algorithm improves results in covert attention decoding, but weakens performance in the overt and the split attentoin setting.
 	%		\end{enumerate}
 	%	}
-	\block{References}{
-		\tiny
+	\block{References} {
 		\printbibliography[heading=none]
 	}
 \end{columns}

@@ -18,6 +18,7 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage[eulergreek]{sansmath}
 
 % Layout
 \renewcommand*{\bibfont}{\footnotesize}
@@ -154,7 +155,8 @@
 							},
 						axis line style={draw=none},
 						tick style={draw=none},
-						xtick={0, 50, 100}
+						xtick={0, 50, 100},
+						tick label style = {font=\sansmath\sffamily},
 					]
 					\addplot+[fill=BlockColor!33, draw=BlockColor!33] coordinates{
 							(50,ALS)

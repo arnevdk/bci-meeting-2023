@@ -299,7 +299,7 @@
 				\node[draw, below= of a2,align=center](svm) {SVM};
 				\node[left=.5of epochs](a3){};
 
-				\node[right=1.5in of xcorr,fill=white,circle,draw=BlockColor, align=center](xcorr_fig){\includegraphics[width=.25\linewidth]{figures/xcorr.eps}};
+				\node[right=1.5in of xcorr, yshift=-.7in,fill=white,circle,draw=BlockColor, align=center](xcorr_fig){\includegraphics[width=.25\linewidth]{figures/xcorr.eps}};
 
 
 				\draw[-{Latex[length=.2in]}] (epochs) to (class);
@@ -317,7 +317,7 @@
 				\draw[,color=BlockColor] (align.north)  |- (a3.center);
 				\draw[-{Latex[length=5mm]},color=BlockColor] (a3.center)  to (epochs);
 
-				\draw[color=BlockColor,dashed] (xcorr) to (xcorr_fig.west);
+				\draw[color=BlockColor,dashed] (xcorr.east) to[bend left] (xcorr_fig.west);
 
 			\end{tikzpicture}
 
@@ -327,11 +327,11 @@
 
 		\subsection*{\color{black} Alignment improves SNR}
 		\centering
-		\includegraphics[width=.918\linewidth]{figures/aligned.pdf}
+		\includegraphics[width=.905\linewidth]{figures/aligned.pdf}
 
 		\subsection*{\color{black} Convergence}
 		\centering
-		\includegraphics[width=.918\linewidth]{figures/convergence.eps}
+		\includegraphics[width=.905\linewidth]{figures/convergence.eps}
 	}
 
 	\column{0.3333333333333333333333333333333333333333}

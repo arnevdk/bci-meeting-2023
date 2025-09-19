@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{authblk}
+\usepackage[letterpaper, hmargin=2.5cm, vmargin=2cm]{geometry}
+\usepackage{todonotes}
+
+% Metadata
+\title{Classifier-based latency estimation for covert attention ERP decoding}
+\author[1,2,*]{Arne Van Den Kerchove}
+\author[1]{Hakim Si-Mohammed}
+\author[2]{Marc M. Van Hulle}
+\author[1]{François Cabestaing}
+\affil[1]{\small UMR CRIStAL, Université de Lille}
+\affil[2]{\small Laboratory for Neuro- and Psychophysiology, KU Leuven}
+\affil[*]{\small Herestraat 49 bus 1021,Leuven, Belgium. Email: \texttt{arne.vandenkerchove@kuleuven.be}}
+\date{}
+
+% Bibliography
+\usepackage[backend=biber,doi=false,isbn=false,url=false,eprint=false]{biblatex}
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+% Layout
+\pagenumbering{gobble}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{Introduction:}
+Brain Computer Interfaces can restore communication for patients suffering from extreme motor disabilities.
+The most commonly used BCI in communication settings is based on the visual event-related potential (ERP).
+Here, the user attends to out of several flashing targets, and each time it is flashed, an ERP is generated which in turn can be gauged by EEG (electroencephalography).
+Traditionally, effective communication can only be achieved when the user directs their gaze to the intended target to select it~\cite{Treder2010}.
+For applicability across multiple different patient groups, the interface should not require directing one's eye gazen, since this ability might be impaired.
+The performance gap between gaze-dependent and gaze-independent operation of a visual ERP speller paradigm interface can partially be explained by differences in P300 ERP component latency jitter. We propose a new classifier-based latency estimation approach for latency correction which improves covert attention performance.
+
+\paragraph{Material, Methods and Results:}
+A pilot study with healthy participants (N=8) was carried out using a stimulation interface resembling the Hex-o-Spell~\cite{Treder2010} interface.
+Data was recorded in three distinct settings: overt attention (the participant was instructed to gaze at the cued target), covert attention (the user was instructed to gaze at the center of the screen) and split attention (the user was instructed to gaze at another target).
+The classifier-based latency estimation algorithm~\cite{Thompson2012} was enhanced using cross-validation and a time-invariant, regularized linear classifier~\cite{VanDenKerchove2022} for accurate single-trial latency estimation. Classification performance (ROC-AUC score) was analyzed with and without latency estimation. The analysis shows a significant increase in performance for covert attention and no significant difference in performance for overt and split attention.
+
+\paragraph{Discussion:} The improvement in covert attention decoding is mainly due to the compensation of jitter of the P300 component. Improvement in other attention settings is not observed since the P300 component, while being the ERP commponent with the highest amplitude, does not convey the most discriminatory information in these settings. Future work should focus on developping a multi-component approach.
+
+\paragraph{Significance:} Eye motor disabilities, ranging from discomfort while gazing at presented targets for a longer period to partial or complete ophtalmoplegia are common in patients suffering from ALS, MS, stroke or Locked-in Syndrome by other causes. A gaze-independent communication interface can allow patients to effectively communicate.
+
+\paragraph{References:}
+\footnotesize
+\printbibliography[heading=none]
+\end{document}

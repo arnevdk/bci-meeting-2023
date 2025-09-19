@@ -77,4 +77,92 @@
   urldate   = {2022-12-02},
 }
 
+@Article{Thompson2012,
+  author     = {Thompson, David E. and Warschausky, Seth and Huggins, Jane E.},
+  journal    = {Journal of Neural Engineering},
+  title      = {Classifier-based latency estimation: a novel way to estimate and predict {BCI} accuracy},
+  year       = {2012},
+  issn       = {1741-2552},
+  month      = dec,
+  number     = {1},
+  pages      = {016006},
+  volume     = {10},
+  abstract   = {Objective. Brain–computer interfaces (BCIs) that detect event-related potentials (ERPs) rely on classification schemes that are vulnerable to latency jitter, a phenomenon known to occur with ERPs such as the P300 response. The objective of this work was to investigate the role that latency jitter plays in BCI classification. Approach. We developed a novel method, classifier-based latency estimation (CBLE), based on a generalization of Woody filtering. The technique works by presenting the time-shifted data to the classifier, and using the time shift that corresponds to the maximal classifier score. Main results. The variance of CBLE estimates correlates significantly (p {\textless} 10-42) with BCI accuracy in the Farwell–Donchin BCI paradigm. Additionally, CBLE predicts same-day accuracy, even from small datasets or datasets that have already been used for classifier training, better than the accuracy on the small dataset (p {\textless} 0.05). The technique should be relatively classifier-independent, and the results were confirmed on two linear classifiers. Significance. The results suggest that latency jitter may be an important cause of poor BCI performance, and methods that correct for latency jitter may improve that performance. CBLE can also be used to decrease the amount of data needed for accuracy estimation, allowing research on effects with shorter timescales.},
+  doi        = {10.1088/1741-2560/10/1/016006},
+  file       = {IOP Full Text PDF:https\://iopscience.iop.org/article/10.1088/1741-2560/10/1/016006/pdf:application/pdf},
+  groups     = {Latency & Alignment},
+  language   = {en},
+  publisher  = {IOP Publishing},
+  shorttitle = {Classifier-based latency estimation},
+  url        = {https://dx.doi.org/10.1088/1741-2560/10/1/016006},
+  urldate    = {2022-12-04},
+}
+
+@Article{Treder2010,
+  author    = {Treder, Matthias S and Blankertz, Benjamin},
+  journal   = {Behavioral and brain functions},
+  title     = {(C)overt attention and visual speller design in an ERP-based brain-computer interface},
+  year      = {2010},
+  number    = {1},
+  pages     = {1--13},
+  volume    = {6},
+  abstract  = {Background
+
+In a visual oddball paradigm, attention to an event usually modulates the event-related potential (ERP). An ERP-based
+ brain-computer interface (BCI) exploits this neural mechanism for communication. Hitherto, it was unclear to what
+ extent the accuracy of such a BCI requires eye movements (overt attention) or whether it is also feasible for
+ targets in the visual periphery (covert attention). Also unclear was how the visual design of the BCI can be
+ improved to meet peculiarities of peripheral vision such as low spatial acuity and crowding.
+
+Method
+
+Healthy participants (N = 13) performed a copy-spelling task wherein they had to count target intensifications. EEG
+ and eye movements were recorded concurrently. First, (c)overt attention was investigated by way of a target
+ fixation condition and a central fixation condition. In the latter, participants had to fixate a dot in the
+ center of the screen and allocate their attention to a target in the visual periphery. Second, the effect of
+ visual speller layout was investigated by comparing the symbol Matrix to an ERP-based Hex-o-Spell, a two-levels
+ speller consisting of six discs arranged on an invisible hexagon.
+
+Results
+
+We assessed counting errors, ERP amplitudes, and offline classification performance. There is an advantage (i.e.,
+ less errors, larger ERP amplitude modulation, better classification) of overt attention over covert attention,
+ and there is also an advantage of the Hex-o-Spell over the Matrix. Using overt attention, P1, N1, P2, N2, and P3
+ components are enhanced by attention. Using covert attention, only N2 and P3 are enhanced for both spellers, and
+ N1 and P2 are modulated when using the Hex-o-Spell but not when using the Matrix. Consequently, classifiers rely
+ mainly on early evoked potentials in overt attention and on later cognitive components in covert attention.
+
+Conclusions
+
+Both overt and covert attention can be used to drive an ERP-based BCI, but performance is markedly lower for covert
+ attention. The Hex-o-Spell outperforms the Matrix, especially when eye movements are not permitted, illustrating
+ that performance can be increased if one accounts for peculiarities of peripheral vision.},
+  doi       = {10.1186/1744-9081-6-28},
+  file      = {:Treder2010 - (C) Overt Attention and Visual Speller Design in an ERP Based Brain Computer Interface
+ .pdf:PDF;:Treder2010 - (C) Overt Attention and Visual Speller Design in an ERP Based Brain Computer Interface.pdf:PDF},
+  groups    = {Covert attention, Gaze-independent BCI},
+  publisher = {BioMed Central},
+}
+
+@Article{VanDenKerchove2022,
+  author    = {Van Den Kerchove, Arne and Libert, Arno and Wittevrongel, Benjamin and Van Hulle, Marc M.},
+  journal   = {Applied Sciences},
+  title     = {Classification of {Event}-{Related} {Potentials} with {Regularized} {Spatiotemporal} {LCMV} {Beamforming}},
+  year      = {2022},
+  issn      = {2076-3417},
+  month     = jan,
+  number    = {6},
+  pages     = {2918},
+  volume    = {12},
+  abstract  = {The usability of EEG-based visual brain–computer interfaces (BCIs) based on event-related potentials (ERPs) benefits from reducing the calibration time before BCI operation. Linear decoding models, such as the spatiotemporal beamformer model, yield state-of-the-art accuracy. Although the training time of this model is generally low, it can require a substantial amount of training data to reach functional performance. Hence, BCI calibration sessions should be sufficiently long to provide enough training data. This work introduces two regularized estimators for the beamformer weights. The first estimator uses cross-validated L2-regularization. The second estimator exploits prior information about the structure of the EEG by assuming Kronecker–Toeplitz-structured covariance. The performances of these estimators are validated and compared with the original spatiotemporal beamformer and a Riemannian-geometry-based decoder using a BCI dataset with P300-paradigm recordings for 21 subjects. Our results show that the introduced estimators are well-conditioned in the presence of limited training data and improve ERP classification accuracy for unseen data. Additionally, we show that structured regularization results in lower training times and memory usage, and a more interpretable classification model.},
+  copyright = {http://creativecommons.org/licenses/by/3.0/},
+  doi       = {10.3390/app12062918},
+  file      = {:VanDenKerchove2022 - Classification of Event Related Potentials with Regularized Spatiotemporal LCMV Beamforming.pdf:PDF},
+  keywords  = {brain–computer interface, event-related potential, beamforming, regularization},
+  language  = {en},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  url       = {https://www.mdpi.com/2076-3417/12/6/2918},
+  urldate   = {2022-12-08},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
